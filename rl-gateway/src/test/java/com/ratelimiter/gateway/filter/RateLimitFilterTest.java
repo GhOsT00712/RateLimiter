@@ -9,6 +9,7 @@ import java.util.UUID;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import com.sun.net.httpserver.HttpServer;
+import com.ratelimiter.gateway.support.TestClients;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -58,7 +59,7 @@ class RateLimitFilterTest {
 
     @BeforeEach
     void setUp() {
-        client = WebTestClient.bindToServer().baseUrl("http://localhost:" + port).build();
+        client = TestClients.bindToServer(port);
     }
 
     @AfterAll

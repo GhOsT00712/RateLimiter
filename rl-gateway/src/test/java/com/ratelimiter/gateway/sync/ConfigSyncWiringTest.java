@@ -12,6 +12,7 @@ import java.time.Duration;
 
 import com.ratelimiter.gateway.rules.RuleTable;
 import com.sun.net.httpserver.HttpServer;
+import com.ratelimiter.gateway.support.TestClients;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
@@ -99,7 +100,7 @@ class ConfigSyncWiringTest {
         }
         assertThat(Files.readString(snapshot)).isEqualTo(BODY);
 
-        WebTestClient client = WebTestClient.bindToServer().baseUrl("http://localhost:" + port).build();
+        WebTestClient client = TestClients.bindToServer(port);
         client.get().uri("/synced/x").exchange().expectStatus().isOk();
         client.get().uri("/synced/x").exchange().expectStatus().isOk();
         client.get().uri("/synced/x").exchange().expectStatus().isEqualTo(429)
