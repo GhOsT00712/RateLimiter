@@ -1,0 +1,5 @@
+4a single identity, cap=100 refill=10/s, 2000 rps for 30s across 2 gateways
+   allowed=399 denied=59602 elapsed=29.999s bound=399.99 -> 99.75% of bound, PASS
+4b 1000 identities, cap=5 refill=0.001/s, 3000 rps for 30s across 2 gateways
+   allowed=5000 (theoretical max 5030.00) denied=85001 max/identity=5 over-bound=0 at-capacity=1000/1000 -> PASS
+dropped iterations=0

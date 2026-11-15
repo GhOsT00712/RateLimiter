@@ -1,0 +1,117 @@
+# Load-test stack. Run with its own project name:
+#   docker compose -p rl-loadtest -f docker-compose.loadtest.yml up -d --wait
+# Images are built from jars already built on the host (see loadtest/run.sh).
+name: rl-loadtest
+
+x-gateway: &gateway
+  image: rl-loadtest/rl-gateway:latest
+  build:
+    context: .
+    args: { MODULE: rl-gateway }
+  restart: "no"
+  cpus: 2
+  environment:
+    JAVA_TOOL_OPTIONS: "-Xms512m -Xmx512m"
+    SPRING_DATA_REDIS_HOST: redis
+    SPRING_DATA_REDIS_PORT: "6379"
+    DEMO_SERVICE_URL: http://demo-service:8082
+    RL_SYNC_CONTROL_PLANE_URL: http://control-plane:8081
+    RL_SYNC_INTERVAL: 2s
+    RL_SYNC_JITTER: 0s
+    RL_SYNC_SNAPSHOT_FILE: /tmp/rules-snapshot.json
+  depends_on:
+    redis: { condition: service_healthy }
+    control-plane: { condition: service_healthy }
+    demo-service: { condition: service_healthy }
+  healthcheck:
+    test: ["CMD-SHELL", "curl -sf http://localhost:8080/actuator/health >/dev/null"]
+    interval: 3s
+    timeout: 3s
+    retries: 40
+    start_period: 10s
+
+services:
+  redis:
+    image: redis:7.4-alpine
+    cpus: 2
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 2s
+      timeout: 2s
+      retries: 20
+
+  mongo:
+    image: mongo:8.0
+    cpus: 1
+    healthcheck:
+      test: ["CMD-SHELL", "mongosh --quiet --eval 'db.runCommand({ping:1}).ok' | grep -q 1"]
+      interval: 3s
+      timeout: 5s
+      retries: 30
+      start_period: 5s
+
+  control-plane:
+    image: rl-loadtest/rl-control-plane:latest
+    build:
+      context: .
+      args: { MODULE: rl-control-plane }
+    restart: "no"
+    cpus: 1
+    environment:
+      JAVA_TOOL_OPTIONS: "-Xms512m -Xmx512m"
+      SPRING_MONGODB_URI: mongodb://mongo:27017/ratelimiter
+    depends_on:
+      mongo: { condition: service_healthy }
+    ports:
+      - "18081:8081"
+    healthcheck:
+      test: ["CMD-SHELL", "curl -sf http://localhost:8081/actuator/health >/dev/null"]
+      interval: 3s
+      timeout: 3s
+      retries: 40
+      start_period: 10s
+
+  demo-service:
+    image: rl-loadtest/demo-service:latest
+    build:
+      context: .
+      args: { MODULE: demo-service }
+    restart: "no"
+    cpus: 4
+    environment:
+      JAVA_TOOL_OPTIONS: "-Xms512m -Xmx512m"
+    healthcheck:
+      # no actuator: any HTTP response (even 404) means it is up
+      test: ["CMD-SHELL", "curl -s -o /dev/null http://localhost:8082/ping"]
+      interval: 3s
+      timeout: 3s
+      retries: 40
+      start_period: 5s
+
+  gateway-1:
+    <<: *gateway
+    ports:
+      - "18080:8080"
+
+  gateway-2:
+    <<: *gateway
+    ports:
+      - "18090:8080"
+
+  k6:
+    image: grafana/k6:latest
+    profiles: ["k6"]
+    cpus: 8
+    entrypoint: ["k6"]
+    working_dir: /scripts
+    environment:
+      GW1: http://gateway-1:8080
+      GW2: http://gateway-2:8080
+      CP: http://control-plane:8081
+      K6_NO_USAGE_REPORT: "true"
+    volumes:
+      - ./loadtest/k6:/scripts:ro
+      - ./loadtest/results:/results
+    depends_on:
+      gateway-1: { condition: service_healthy }
+      gateway-2: { condition: service_healthy }

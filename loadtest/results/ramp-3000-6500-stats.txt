@@ -1,0 +1,286 @@
+# 15:18:27
+rl-loadtest-gateway-1-1 cpu=17.50% mem=748.5MiB / 30.19GiB
+rl-loadtest-gateway-2-1 cpu=2.96% mem=548MiB / 30.19GiB
+rl-loadtest-control-plane-1 cpu=0.55% mem=318.9MiB / 30.19GiB
+rl-loadtest-redis-1 cpu=0.22% mem=30.61MiB / 30.19GiB
+rl-loadtest-mongo-1 cpu=18.36% mem=372.1MiB / 30.19GiB
+rl-loadtest-demo-service-1 cpu=0.23% mem=722MiB / 30.19GiB
+# 15:18:34
+rl-loadtest-k6-run-49c5206cab7a cpu=80.00% mem=193.3MiB / 30.19GiB
+rl-loadtest-gateway-1-1 cpu=140.49% mem=743.7MiB / 30.19GiB
+rl-loadtest-gateway-2-1 cpu=0.13% mem=545.7MiB / 30.19GiB
+rl-loadtest-control-plane-1 cpu=0.10% mem=318.4MiB / 30.19GiB
+rl-loadtest-redis-1 cpu=22.23% mem=39.83MiB / 30.19GiB
+rl-loadtest-mongo-1 cpu=36.64% mem=223.1MiB / 30.19GiB
+rl-loadtest-demo-service-1 cpu=46.07% mem=726.7MiB / 30.19GiB
+# 15:18:42
+rl-loadtest-k6-run-49c5206cab7a cpu=87.00% mem=217.9MiB / 30.19GiB
+rl-loadtest-gateway-1-1 cpu=140.69% mem=742.9MiB / 30.19GiB
+rl-loadtest-gateway-2-1 cpu=2.67% mem=547.9MiB / 30.19GiB
+rl-loadtest-control-plane-1 cpu=0.07% mem=318.2MiB / 30.19GiB
+rl-loadtest-redis-1 cpu=19.16% mem=40.64MiB / 30.19GiB
+rl-loadtest-mongo-1 cpu=0.35% mem=221.3MiB / 30.19GiB
+rl-loadtest-demo-service-1 cpu=45.68% mem=724.9MiB / 30.19GiB
+# 15:18:49
+rl-loadtest-k6-run-49c5206cab7a cpu=89.44% mem=252.7MiB / 30.19GiB
+rl-loadtest-gateway-1-1 cpu=144.37% mem=742.5MiB / 30.19GiB
+rl-loadtest-gateway-2-1 cpu=0.22% mem=546.8MiB / 30.19GiB
+rl-loadtest-control-plane-1 cpu=3.79% mem=319.9MiB / 30.19GiB
+rl-loadtest-redis-1 cpu=20.89% mem=40.74MiB / 30.19GiB
+rl-loadtest-mongo-1 cpu=0.54% mem=222.6MiB / 30.19GiB
+rl-loadtest-demo-service-1 cpu=48.37% mem=725.3MiB / 30.19GiB
+# 15:18:57
+rl-loadtest-k6-run-49c5206cab7a cpu=78.90% mem=255.9MiB / 30.19GiB
+rl-loadtest-gateway-1-1 cpu=138.89% mem=741.9MiB / 30.19GiB
+rl-loadtest-gateway-2-1 cpu=0.12% mem=546.4MiB / 30.19GiB
+rl-loadtest-control-plane-1 cpu=0.08% mem=319.4MiB / 30.19GiB
+rl-loadtest-redis-1 cpu=20.42% mem=42.11MiB / 30.19GiB
+rl-loadtest-mongo-1 cpu=0.35% mem=222.4MiB / 30.19GiB
+rl-loadtest-demo-service-1 cpu=45.48% mem=723.7MiB / 30.19GiB
+# 15:19:04
+rl-loadtest-k6-run-49c5206cab7a cpu=82.62% mem=260.3MiB / 30.19GiB
+rl-loadtest-gateway-1-1 cpu=153.45% mem=738.5MiB / 30.19GiB
+rl-loadtest-gateway-2-1 cpu=0.12% mem=546.8MiB / 30.19GiB
+rl-loadtest-control-plane-1 cpu=2.64% mem=318.5MiB / 30.19GiB
+rl-loadtest-redis-1 cpu=27.26% mem=46.68MiB / 30.19GiB
+rl-loadtest-mongo-1 cpu=37.83% mem=225MiB / 30.19GiB
+rl-loadtest-demo-service-1 cpu=45.55% mem=720.6MiB / 30.19GiB
+# 15:19:12
+rl-loadtest-k6-run-49c5206cab7a cpu=76.37% mem=266MiB / 30.19GiB
+rl-loadtest-gateway-1-1 cpu=146.43% mem=736.3MiB / 30.19GiB
+rl-loadtest-gateway-2-1 cpu=0.23% mem=546MiB / 30.19GiB
+rl-loadtest-control-plane-1 cpu=0.95% mem=319MiB / 30.19GiB
+rl-loadtest-redis-1 cpu=18.57% mem=47.5MiB / 30.19GiB
+rl-loadtest-mongo-1 cpu=13.29% mem=224.7MiB / 30.19GiB
+rl-loadtest-demo-service-1 cpu=44.51% mem=715.5MiB / 30.19GiB
+# 15:19:19
+rl-loadtest-k6-run-49c5206cab7a cpu=91.53% mem=286.1MiB / 30.19GiB
+rl-loadtest-gateway-1-1 cpu=168.01% mem=736MiB / 30.19GiB
+rl-loadtest-gateway-2-1 cpu=2.50% mem=546.9MiB / 30.19GiB
+rl-loadtest-control-plane-1 cpu=2.96% mem=319.4MiB / 30.19GiB
+rl-loadtest-redis-1 cpu=23.30% mem=48.22MiB / 30.19GiB
+rl-loadtest-mongo-1 cpu=0.47% mem=222MiB / 30.19GiB
+rl-loadtest-demo-service-1 cpu=53.15% mem=715.6MiB / 30.19GiB
+# 15:19:26
+rl-loadtest-k6-run-49c5206cab7a cpu=89.01% mem=296.4MiB / 30.19GiB
+rl-loadtest-gateway-1-1 cpu=166.59% mem=736.1MiB / 30.19GiB
+rl-loadtest-gateway-2-1 cpu=0.13% mem=547.5MiB / 30.19GiB
+rl-loadtest-control-plane-1 cpu=0.09% mem=319.8MiB / 30.19GiB
+rl-loadtest-redis-1 cpu=24.08% mem=47.75MiB / 30.19GiB
+rl-loadtest-mongo-1 cpu=0.36% mem=221.9MiB / 30.19GiB
+rl-loadtest-demo-service-1 cpu=50.30% mem=715.5MiB / 30.19GiB
+# 15:19:34
+rl-loadtest-k6-run-49c5206cab7a cpu=91.37% mem=296.2MiB / 30.19GiB
+rl-loadtest-gateway-1-1 cpu=173.40% mem=736.3MiB / 30.19GiB
+rl-loadtest-gateway-2-1 cpu=2.74% mem=546.5MiB / 30.19GiB
+rl-loadtest-control-plane-1 cpu=5.00% mem=321.1MiB / 30.19GiB
+rl-loadtest-redis-1 cpu=22.63% mem=47.62MiB / 30.19GiB
+rl-loadtest-mongo-1 cpu=0.96% mem=226.2MiB / 30.19GiB
+rl-loadtest-demo-service-1 cpu=51.73% mem=717.2MiB / 30.19GiB
+# 15:19:42
+rl-loadtest-k6-run-49c5206cab7a cpu=99.47% mem=313MiB / 30.19GiB
+rl-loadtest-gateway-1-1 cpu=170.58% mem=736.5MiB / 30.19GiB
+rl-loadtest-gateway-2-1 cpu=0.39% mem=546.5MiB / 30.19GiB
+rl-loadtest-control-plane-1 cpu=0.98% mem=320.1MiB / 30.19GiB
+rl-loadtest-redis-1 cpu=22.17% mem=50.14MiB / 30.19GiB
+rl-loadtest-mongo-1 cpu=37.37% mem=224MiB / 30.19GiB
+rl-loadtest-demo-service-1 cpu=54.20% mem=716.4MiB / 30.19GiB
+# 15:19:49
+rl-loadtest-k6-run-49c5206cab7a cpu=111.25% mem=319.5MiB / 30.19GiB
+rl-loadtest-gateway-1-1 cpu=190.26% mem=740.1MiB / 30.19GiB
+rl-loadtest-gateway-2-1 cpu=2.50% mem=547.2MiB / 30.19GiB
+rl-loadtest-control-plane-1 cpu=0.25% mem=319.9MiB / 30.19GiB
+rl-loadtest-redis-1 cpu=27.35% mem=53.37MiB / 30.19GiB
+rl-loadtest-mongo-1 cpu=0.40% mem=221.5MiB / 30.19GiB
+rl-loadtest-demo-service-1 cpu=57.70% mem=715.6MiB / 30.19GiB
+# 15:19:56
+rl-loadtest-k6-run-49c5206cab7a cpu=111.51% mem=343.8MiB / 30.19GiB
+rl-loadtest-gateway-1-1 cpu=189.06% mem=737.5MiB / 30.19GiB
+rl-loadtest-gateway-2-1 cpu=0.13% mem=547MiB / 30.19GiB
+rl-loadtest-control-plane-1 cpu=0.07% mem=320.4MiB / 30.19GiB
+rl-loadtest-redis-1 cpu=25.50% mem=50.35MiB / 30.19GiB
+rl-loadtest-mongo-1 cpu=0.36% mem=221.8MiB / 30.19GiB
+rl-loadtest-demo-service-1 cpu=60.66% mem=714.7MiB / 30.19GiB
+# 15:20:04
+rl-loadtest-k6-run-49c5206cab7a cpu=102.23% mem=343.8MiB / 30.19GiB
+rl-loadtest-gateway-1-1 cpu=190.98% mem=740.6MiB / 30.19GiB
+rl-loadtest-gateway-2-1 cpu=2.72% mem=548.3MiB / 30.19GiB
+rl-loadtest-control-plane-1 cpu=0.37% mem=320MiB / 30.19GiB
+rl-loadtest-redis-1 cpu=27.27% mem=50.3MiB / 30.19GiB
+rl-loadtest-mongo-1 cpu=0.39% mem=222.5MiB / 30.19GiB
+rl-loadtest-demo-service-1 cpu=57.56% mem=716.4MiB / 30.19GiB
+# 15:20:12
+rl-loadtest-k6-run-49c5206cab7a cpu=105.99% mem=364.5MiB / 30.19GiB
+rl-loadtest-gateway-1-1 cpu=186.81% mem=736.5MiB / 30.19GiB
+rl-loadtest-gateway-2-1 cpu=0.25% mem=546.4MiB / 30.19GiB
+rl-loadtest-control-plane-1 cpu=0.47% mem=320.5MiB / 30.19GiB
+rl-loadtest-redis-1 cpu=27.11% mem=50.7MiB / 30.19GiB
+rl-loadtest-mongo-1 cpu=37.86% mem=223.5MiB / 30.19GiB
+rl-loadtest-demo-service-1 cpu=60.77% mem=716.2MiB / 30.19GiB
+# 15:20:19
+rl-loadtest-k6-run-49c5206cab7a cpu=113.64% mem=364.5MiB / 30.19GiB
+rl-loadtest-gateway-1-1 cpu=199.46% mem=736.9MiB / 30.19GiB
+rl-loadtest-gateway-2-1 cpu=2.64% mem=547.4MiB / 30.19GiB
+rl-loadtest-control-plane-1 cpu=0.34% mem=320.5MiB / 30.19GiB
+rl-loadtest-redis-1 cpu=27.15% mem=48.86MiB / 30.19GiB
+rl-loadtest-mongo-1 cpu=20.23% mem=223.5MiB / 30.19GiB
+rl-loadtest-demo-service-1 cpu=62.63% mem=714.8MiB / 30.19GiB
+# 15:20:26
+rl-loadtest-k6-run-49c5206cab7a cpu=113.98% mem=365.3MiB / 30.19GiB
+rl-loadtest-gateway-1-1 cpu=197.38% mem=736.2MiB / 30.19GiB
+rl-loadtest-gateway-2-1 cpu=0.12% mem=546.5MiB / 30.19GiB
+rl-loadtest-control-plane-1 cpu=0.08% mem=321.7MiB / 30.19GiB
+rl-loadtest-redis-1 cpu=27.12% mem=50.07MiB / 30.19GiB
+rl-loadtest-mongo-1 cpu=0.36% mem=222.2MiB / 30.19GiB
+rl-loadtest-demo-service-1 cpu=65.98% mem=716.2MiB / 30.19GiB
+# 15:20:34
+rl-loadtest-k6-run-49c5206cab7a cpu=113.95% mem=398.6MiB / 30.19GiB
+rl-loadtest-gateway-1-1 cpu=198.58% mem=736.2MiB / 30.19GiB
+rl-loadtest-gateway-2-1 cpu=3.15% mem=551.2MiB / 30.19GiB
+rl-loadtest-control-plane-1 cpu=0.27% mem=319.8MiB / 30.19GiB
+rl-loadtest-redis-1 cpu=28.79% mem=50.56MiB / 30.19GiB
+rl-loadtest-mongo-1 cpu=0.40% mem=222.2MiB / 30.19GiB
+rl-loadtest-demo-service-1 cpu=61.99% mem=715.6MiB / 30.19GiB
+# 15:20:42
+rl-loadtest-k6-run-49c5206cab7a cpu=127.43% mem=398.3MiB / 30.19GiB
+rl-loadtest-gateway-1-1 cpu=192.27% mem=736.6MiB / 30.19GiB
+rl-loadtest-gateway-2-1 cpu=0.23% mem=546.1MiB / 30.19GiB
+rl-loadtest-control-plane-1 cpu=3.38% mem=320.7MiB / 30.19GiB
+rl-loadtest-redis-1 cpu=29.08% mem=54.85MiB / 30.19GiB
+rl-loadtest-mongo-1 cpu=20.47% mem=372.7MiB / 30.19GiB
+rl-loadtest-demo-service-1 cpu=62.68% mem=714.9MiB / 30.19GiB
+# 15:20:49
+rl-loadtest-k6-run-49c5206cab7a cpu=123.66% mem=398.7MiB / 30.19GiB
+rl-loadtest-gateway-1-1 cpu=199.35% mem=736.6MiB / 30.19GiB
+rl-loadtest-gateway-2-1 cpu=0.13% mem=546.4MiB / 30.19GiB
+rl-loadtest-control-plane-1 cpu=0.26% mem=319.9MiB / 30.19GiB
+rl-loadtest-redis-1 cpu=28.65% mem=51.17MiB / 30.19GiB
+rl-loadtest-mongo-1 cpu=37.93% mem=224.7MiB / 30.19GiB
+rl-loadtest-demo-service-1 cpu=66.65% mem=715.7MiB / 30.19GiB
+# 15:20:57
+rl-loadtest-k6-run-49c5206cab7a cpu=135.09% mem=439.3MiB / 30.19GiB
+rl-loadtest-gateway-1-1 cpu=202.29% mem=737.6MiB / 30.19GiB
+rl-loadtest-gateway-2-1 cpu=0.12% mem=546.5MiB / 30.19GiB
+rl-loadtest-control-plane-1 cpu=2.55% mem=321MiB / 30.19GiB
+rl-loadtest-redis-1 cpu=30.05% mem=50.63MiB / 30.19GiB
+rl-loadtest-mongo-1 cpu=0.39% mem=222.1MiB / 30.19GiB
+rl-loadtest-demo-service-1 cpu=67.32% mem=715.8MiB / 30.19GiB
+# 15:21:04
+rl-loadtest-k6-run-49c5206cab7a cpu=134.91% mem=440.9MiB / 30.19GiB
+rl-loadtest-gateway-1-1 cpu=200.53% mem=736.6MiB / 30.19GiB
+rl-loadtest-gateway-2-1 cpu=0.22% mem=546.1MiB / 30.19GiB
+rl-loadtest-control-plane-1 cpu=0.46% mem=321MiB / 30.19GiB
+rl-loadtest-redis-1 cpu=29.90% mem=50.32MiB / 30.19GiB
+rl-loadtest-mongo-1 cpu=0.77% mem=222.4MiB / 30.19GiB
+rl-loadtest-demo-service-1 cpu=67.60% mem=717.1MiB / 30.19GiB
+# 15:21:12
+rl-loadtest-k6-run-49c5206cab7a cpu=133.67% mem=440.2MiB / 30.19GiB
+rl-loadtest-gateway-1-1 cpu=200.56% mem=737.1MiB / 30.19GiB
+rl-loadtest-gateway-2-1 cpu=0.22% mem=546.9MiB / 30.19GiB
+rl-loadtest-control-plane-1 cpu=0.06% mem=320MiB / 30.19GiB
+rl-loadtest-redis-1 cpu=28.56% mem=50.55MiB / 30.19GiB
+rl-loadtest-mongo-1 cpu=0.47% mem=222MiB / 30.19GiB
+rl-loadtest-demo-service-1 cpu=69.00% mem=715.2MiB / 30.19GiB
+# 15:21:19
+rl-loadtest-k6-run-49c5206cab7a cpu=141.34% mem=490.3MiB / 30.19GiB
+rl-loadtest-gateway-1-1 cpu=200.62% mem=737.3MiB / 30.19GiB
+rl-loadtest-gateway-2-1 cpu=0.13% mem=546.4MiB / 30.19GiB
+rl-loadtest-control-plane-1 cpu=0.34% mem=321.1MiB / 30.19GiB
+rl-loadtest-redis-1 cpu=30.23% mem=50.86MiB / 30.19GiB
+rl-loadtest-mongo-1 cpu=37.30% mem=224MiB / 30.19GiB
+rl-loadtest-demo-service-1 cpu=71.03% mem=715.9MiB / 30.19GiB
+# 15:21:27
+rl-loadtest-k6-run-49c5206cab7a cpu=143.72% mem=491.4MiB / 30.19GiB
+rl-loadtest-gateway-1-1 cpu=200.51% mem=737.3MiB / 30.19GiB
+rl-loadtest-gateway-2-1 cpu=0.12% mem=547.3MiB / 30.19GiB
+rl-loadtest-control-plane-1 cpu=0.81% mem=320.5MiB / 30.19GiB
+rl-loadtest-redis-1 cpu=30.38% mem=49.97MiB / 30.19GiB
+rl-loadtest-mongo-1 cpu=13.18% mem=221.4MiB / 30.19GiB
+rl-loadtest-demo-service-1 cpu=71.90% mem=716.7MiB / 30.19GiB
+# 15:21:34
+rl-loadtest-k6-run-49c5206cab7a cpu=140.64% mem=495.5MiB / 30.19GiB
+rl-loadtest-gateway-1-1 cpu=199.26% mem=737.6MiB / 30.19GiB
+rl-loadtest-gateway-2-1 cpu=0.22% mem=546.8MiB / 30.19GiB
+rl-loadtest-control-plane-1 cpu=0.68% mem=321.9MiB / 30.19GiB
+rl-loadtest-redis-1 cpu=29.91% mem=50.41MiB / 30.19GiB
+rl-loadtest-mongo-1 cpu=0.82% mem=223.8MiB / 30.19GiB
+rl-loadtest-demo-service-1 cpu=69.34% mem=716.4MiB / 30.19GiB
+# 15:21:42
+rl-loadtest-k6-run-49c5206cab7a cpu=128.41% mem=495.5MiB / 30.19GiB
+rl-loadtest-gateway-1-1 cpu=197.93% mem=738.1MiB / 30.19GiB
+rl-loadtest-gateway-2-1 cpu=2.21% mem=547MiB / 30.19GiB
+rl-loadtest-control-plane-1 cpu=3.20% mem=322.7MiB / 30.19GiB
+rl-loadtest-redis-1 cpu=28.33% mem=50.39MiB / 30.19GiB
+rl-loadtest-mongo-1 cpu=0.51% mem=222.2MiB / 30.19GiB
+rl-loadtest-demo-service-1 cpu=69.85% mem=715.7MiB / 30.19GiB
+# 15:21:49
+rl-loadtest-k6-run-49c5206cab7a cpu=149.59% mem=548.5MiB / 30.19GiB
+rl-loadtest-gateway-1-1 cpu=204.68% mem=737.3MiB / 30.19GiB
+rl-loadtest-gateway-2-1 cpu=0.13% mem=546.8MiB / 30.19GiB
+rl-loadtest-control-plane-1 cpu=0.07% mem=321.7MiB / 30.19GiB
+rl-loadtest-redis-1 cpu=30.17% mem=50.15MiB / 30.19GiB
+rl-loadtest-mongo-1 cpu=2.63% mem=233.1MiB / 30.19GiB
+rl-loadtest-demo-service-1 cpu=71.06% mem=716.7MiB / 30.19GiB
+# 15:21:57
+rl-loadtest-k6-run-49c5206cab7a cpu=146.64% mem=550.3MiB / 30.19GiB
+rl-loadtest-gateway-1-1 cpu=197.32% mem=738.5MiB / 30.19GiB
+rl-loadtest-gateway-2-1 cpu=2.64% mem=546.6MiB / 30.19GiB
+rl-loadtest-control-plane-1 cpu=2.60% mem=323MiB / 30.19GiB
+rl-loadtest-redis-1 cpu=29.44% mem=51.13MiB / 30.19GiB
+rl-loadtest-mongo-1 cpu=0.44% mem=222.9MiB / 30.19GiB
+rl-loadtest-demo-service-1 cpu=73.29% mem=716.5MiB / 30.19GiB
+# 15:22:04
+rl-loadtest-k6-run-49c5206cab7a cpu=135.82% mem=550.5MiB / 30.19GiB
+rl-loadtest-gateway-1-1 cpu=201.89% mem=738.1MiB / 30.19GiB
+rl-loadtest-gateway-2-1 cpu=0.24% mem=546.5MiB / 30.19GiB
+rl-loadtest-control-plane-1 cpu=0.26% mem=321.8MiB / 30.19GiB
+rl-loadtest-redis-1 cpu=28.87% mem=52.04MiB / 30.19GiB
+rl-loadtest-mongo-1 cpu=0.78% mem=224.6MiB / 30.19GiB
+rl-loadtest-demo-service-1 cpu=73.65% mem=717.7MiB / 30.19GiB
+# 15:22:12
+rl-loadtest-k6-run-49c5206cab7a cpu=136.60% mem=550.4MiB / 30.19GiB
+rl-loadtest-gateway-1-1 cpu=199.14% mem=737MiB / 30.19GiB
+rl-loadtest-gateway-2-1 cpu=2.63% mem=547.9MiB / 30.19GiB
+rl-loadtest-control-plane-1 cpu=3.15% mem=323.2MiB / 30.19GiB
+rl-loadtest-redis-1 cpu=30.49% mem=49.84MiB / 30.19GiB
+rl-loadtest-mongo-1 cpu=0.49% mem=222.3MiB / 30.19GiB
+rl-loadtest-demo-service-1 cpu=70.73% mem=717.5MiB / 30.19GiB
+# 15:22:19
+rl-loadtest-k6-run-49c5206cab7a cpu=154.44% mem=552MiB / 30.19GiB
+rl-loadtest-gateway-1-1 cpu=202.07% mem=738.4MiB / 30.19GiB
+rl-loadtest-gateway-2-1 cpu=0.12% mem=546.8MiB / 30.19GiB
+rl-loadtest-control-plane-1 cpu=0.07% mem=321.3MiB / 30.19GiB
+rl-loadtest-redis-1 cpu=30.14% mem=51.1MiB / 30.19GiB
+rl-loadtest-mongo-1 cpu=0.40% mem=221.9MiB / 30.19GiB
+rl-loadtest-demo-service-1 cpu=73.41% mem=717.2MiB / 30.19GiB
+# 15:22:27
+rl-loadtest-k6-run-49c5206cab7a cpu=141.93% mem=629.1MiB / 30.19GiB
+rl-loadtest-gateway-1-1 cpu=202.22% mem=737.9MiB / 30.19GiB
+rl-loadtest-gateway-2-1 cpu=2.52% mem=547.8MiB / 30.19GiB
+rl-loadtest-control-plane-1 cpu=0.06% mem=321.4MiB / 30.19GiB
+rl-loadtest-redis-1 cpu=28.23% mem=49.54MiB / 30.19GiB
+rl-loadtest-mongo-1 cpu=37.69% mem=227MiB / 30.19GiB
+rl-loadtest-demo-service-1 cpu=74.21% mem=717.5MiB / 30.19GiB
+# 15:22:34
+rl-loadtest-k6-run-49c5206cab7a cpu=156.53% mem=641MiB / 30.19GiB
+rl-loadtest-gateway-1-1 cpu=197.95% mem=737.6MiB / 30.19GiB
+rl-loadtest-gateway-2-1 cpu=0.23% mem=547.5MiB / 30.19GiB
+rl-loadtest-control-plane-1 cpu=0.57% mem=321.5MiB / 30.19GiB
+rl-loadtest-redis-1 cpu=27.18% mem=49.89MiB / 30.19GiB
+rl-loadtest-mongo-1 cpu=22.07% mem=224.2MiB / 30.19GiB
+rl-loadtest-demo-service-1 cpu=77.65% mem=716.9MiB / 30.19GiB
+# 15:22:42
+rl-loadtest-k6-run-49c5206cab7a cpu=140.23% mem=628.2MiB / 30.19GiB
+rl-loadtest-gateway-1-1 cpu=198.09% mem=738.1MiB / 30.19GiB
+rl-loadtest-gateway-2-1 cpu=0.14% mem=547.2MiB / 30.19GiB
+rl-loadtest-control-plane-1 cpu=0.61% mem=321.3MiB / 30.19GiB
+rl-loadtest-redis-1 cpu=29.36% mem=50.12MiB / 30.19GiB
+rl-loadtest-mongo-1 cpu=38.13% mem=224.2MiB / 30.19GiB
+rl-loadtest-demo-service-1 cpu=75.00% mem=720.1MiB / 30.19GiB
+# 15:22:49
+rl-loadtest-gateway-1-1 cpu=2.73% mem=733.6MiB / 30.19GiB
+rl-loadtest-gateway-2-1 cpu=0.14% mem=547.9MiB / 30.19GiB
+rl-loadtest-control-plane-1 cpu=0.08% mem=324MiB / 30.19GiB
+rl-loadtest-redis-1 cpu=0.23% mem=49.61MiB / 30.19GiB
+rl-loadtest-mongo-1 cpu=0.38% mem=223.6MiB / 30.19GiB
+rl-loadtest-demo-service-1 cpu=0.08% mem=714.2MiB / 30.19GiB

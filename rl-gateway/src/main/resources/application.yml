@@ -13,6 +13,6 @@ spring:
         webflux:
           routes:
             - id: orders
-              uri: http://localhost:8082
+              uri: ${DEMO_SERVICE_URL:http://localhost:8082}
               predicates:
                 - Path=/v1/orders/**

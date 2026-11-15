@@ -1,0 +1,36 @@
+{
+  "scenario": "accuracy",
+  "date": "2026-11-15T10:02:35.627Z",
+  "single": {
+    "capacity": 100,
+    "refillPerSec": 10,
+    "ratePerSec": 2000,
+    "durationSec": 30,
+    "allowed": 399,
+    "denied": 59602,
+    "elapsedSec": 29.998,
+    "bound": 399.98,
+    "allowedOverBound": 0.9975498774938747,
+    "headroom": 0.9800000000000182,
+    "pass": true
+  },
+  "many": {
+    "identities": 1000,
+    "capacity": 5,
+    "refillPerSec": 0.001,
+    "ratePerSec": 3000,
+    "durationSec": 30,
+    "allowed": 5000,
+    "denied": 85001,
+    "elapsedSec": 29.998,
+    "perIdentityBound": 5,
+    "maxAllowedForOneIdentity": 5,
+    "identitiesOverBound": 0,
+    "identitiesAtCapacity": 1000,
+    "identitiesSeen": 1000,
+    "theoreticalMaxTotal": 5029.998,
+    "allowedOverTheoretical": 0.9940361805312846,
+    "pass": true
+  },
+  "droppedIterations": 0
+}

@@ -1,0 +1,153 @@
+{
+  "scenario": "ramp",
+  "date": "2026-11-15T09:57:10.259Z",
+  "gateway": "gateway-1 only",
+  "stepSec": 30,
+  "ceilingP99Ms": 50,
+  "steps": [
+    {
+      "step": "s01",
+      "targetRps": 5500,
+      "achievedRps": 5496.833333333333,
+      "count": 164905,
+      "avg": 4.936645188326634,
+      "p50": 1.146219,
+      "p95": 22.85878279999999,
+      "p99": 36.508817839999935,
+      "max": 73.271236,
+      "dropped": 0,
+      "failRate": 0,
+      "denied429": 0,
+      "healthy": true,
+      "reasons": []
+    },
+    {
+      "step": "s02",
+      "targetRps": 6000,
+      "achievedRps": 5989,
+      "count": 179670,
+      "avg": 7.706271413124149,
+      "p50": 1.360306,
+      "p95": 31.306939549999996,
+      "p99": 43.810907449999995,
+      "max": 79.89291,
+      "dropped": 0,
+      "failRate": 0,
+      "denied429": 0,
+      "healthy": true,
+      "reasons": []
+    },
+    {
+      "step": "s03",
+      "targetRps": 6500,
+      "achievedRps": 6488.966666666666,
+      "count": 194669,
+      "avg": 11.945367297304612,
+      "p50": 2.659397,
+      "p95": 41.18800040000001,
+      "p99": 50.63098808,
+      "max": 72.972491,
+      "dropped": 0,
+      "failRate": 0,
+      "denied429": 0,
+      "healthy": false,
+      "reasons": [
+        "p99>50ms"
+      ]
+    },
+    {
+      "step": "s04",
+      "targetRps": 7000,
+      "achievedRps": 6973.166666666667,
+      "count": 209195,
+      "avg": 17.013306799938125,
+      "p50": 9.345704,
+      "p95": 51.0198702,
+      "p99": 63.14058366,
+      "max": 89.911544,
+      "dropped": 0,
+      "failRate": 0,
+      "denied429": 0,
+      "healthy": false,
+      "reasons": [
+        "p99>50ms"
+      ]
+    },
+    {
+      "step": "s05",
+      "targetRps": 7500,
+      "achievedRps": 7466.766666666666,
+      "count": 224003,
+      "avg": 21.882384285799198,
+      "p50": 16.179018,
+      "p95": 58.2391364,
+      "p99": 67.98030372000001,
+      "max": 105.200401,
+      "dropped": 0,
+      "failRate": 0,
+      "denied429": 0,
+      "healthy": false,
+      "reasons": [
+        "p99>50ms"
+      ]
+    },
+    {
+      "step": "s06",
+      "targetRps": 8000,
+      "achievedRps": 7926.466666666666,
+      "count": 237794,
+      "avg": 31.73924257780718,
+      "p50": 27.883183,
+      "p95": 74.1165322,
+      "p99": 92.41551053,
+      "max": 1103.278636,
+      "dropped": 0,
+      "failRate": 0,
+      "denied429": 0,
+      "healthy": false,
+      "reasons": [
+        "p99>50ms"
+      ]
+    },
+    {
+      "step": "s07",
+      "targetRps": 8500,
+      "achievedRps": 8371.333333333334,
+      "count": 251140,
+      "avg": 49.98686073699898,
+      "p50": 48.2408765,
+      "p95": 103.54882984999998,
+      "p99": 144.82719225,
+      "max": 245.401148,
+      "dropped": 0,
+      "failRate": 0,
+      "denied429": 0,
+      "healthy": false,
+      "reasons": [
+        "p99>50ms"
+      ]
+    },
+    {
+      "step": "s08",
+      "targetRps": 9000,
+      "achievedRps": 8762.2,
+      "count": 262866,
+      "avg": 73.47795155122327,
+      "p50": 69.931217,
+      "p95": 156.8959835,
+      "p99": 193.89954210000002,
+      "max": 622.966836,
+      "dropped": 0,
+      "failRate": 0,
+      "denied429": 0,
+      "healthy": false,
+      "reasons": [
+        "p99>50ms",
+        "achieved<98%"
+      ]
+    }
+  ],
+  "maxHealthyRps": 6000,
+  "maxHealthyAchievedRps": 5989,
+  "ceilingReached": true
+}

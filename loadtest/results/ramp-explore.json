@@ -1,0 +1,290 @@
+{
+  "scenario": "ramp",
+  "date": "2026-11-15T09:48:12.766Z",
+  "gateway": "gateway-1 only",
+  "stepSec": 15,
+  "ceilingP99Ms": 50,
+  "steps": [
+    {
+      "step": "s01",
+      "targetRps": 2000,
+      "achievedRps": 2000.0666666666666,
+      "count": 30001,
+      "avg": 0.8989172324589185,
+      "p50": 0.860357,
+      "p95": 1.050264,
+      "p99": 1.380809,
+      "max": 18.81316,
+      "dropped": 0,
+      "failRate": 0,
+      "denied429": 0,
+      "healthy": true,
+      "reasons": []
+    },
+    {
+      "step": "s02",
+      "targetRps": 4000,
+      "achievedRps": 4000.0666666666666,
+      "count": 60001,
+      "avg": 1.060236065182249,
+      "p50": 0.917569,
+      "p95": 1.207196,
+      "p99": 4.783632,
+      "max": 31.150987,
+      "dropped": 0,
+      "failRate": 0,
+      "denied429": 0,
+      "healthy": true,
+      "reasons": []
+    },
+    {
+      "step": "s03",
+      "targetRps": 6000,
+      "achievedRps": 5971.733333333334,
+      "count": 89576,
+      "avg": 8.781374833895203,
+      "p50": 1.351889,
+      "p95": 35.65310525,
+      "p99": 54.41250875,
+      "max": 77.40549,
+      "dropped": 0,
+      "failRate": 0,
+      "denied429": 0,
+      "healthy": false,
+      "reasons": [
+        "p99>50ms"
+      ]
+    },
+    {
+      "step": "s04",
+      "targetRps": 8000,
+      "achievedRps": 7839.6,
+      "count": 117594,
+      "avg": 33.43659006148297,
+      "p50": 29.968461499999997,
+      "p95": 79.30962894999999,
+      "p99": 104.27946214999993,
+      "max": 236.516929,
+      "dropped": 0,
+      "failRate": 0,
+      "denied429": 0,
+      "healthy": false,
+      "reasons": [
+        "p99>50ms",
+        "achieved<98%"
+      ]
+    },
+    {
+      "step": "s05",
+      "targetRps": 10000,
+      "achievedRps": 9028.666666666666,
+      "count": 135430,
+      "avg": 148.70591994357952,
+      "p50": 128.1366965,
+      "p95": 237.8917513499999,
+      "p99": 334.67539484999907,
+      "max": 4980.8709,
+      "dropped": 0,
+      "failRate": 0,
+      "denied429": 0,
+      "healthy": false,
+      "reasons": [
+        "p99>50ms",
+        "achieved<98%"
+      ]
+    },
+    {
+      "step": "s06",
+      "targetRps": 12000,
+      "achievedRps": 9175.666666666666,
+      "count": 137635,
+      "avg": 237.29949484650163,
+      "p50": 169.604674,
+      "p95": 297.8302333,
+      "p99": 2643.327083540003,
+      "max": 9537.274867,
+      "dropped": 0,
+      "failRate": 0,
+      "denied429": 0,
+      "healthy": false,
+      "reasons": [
+        "p99>50ms",
+        "achieved<98%"
+      ]
+    },
+    {
+      "step": "s07",
+      "targetRps": 14000,
+      "achievedRps": 9055.8,
+      "count": 135837,
+      "avg": 271.2046245836785,
+      "p50": 184.574782,
+      "p95": 309.76750300000003,
+      "p99": 1246.368237799993,
+      "max": 41482.467466,
+      "dropped": 0,
+      "failRate": 0,
+      "denied429": 0,
+      "healthy": false,
+      "reasons": [
+        "p99>50ms",
+        "achieved<98%"
+      ]
+    },
+    {
+      "step": "s08",
+      "targetRps": 16000,
+      "achievedRps": 8196.6,
+      "count": 122949,
+      "avg": 345.1872839300599,
+      "p50": 348.914797,
+      "p95": 499.41037039999986,
+      "p99": 586.54592992,
+      "max": 1721.107404,
+      "dropped": 0,
+      "failRate": 0,
+      "denied429": 0,
+      "healthy": false,
+      "reasons": [
+        "p99>50ms",
+        "achieved<98%"
+      ]
+    },
+    {
+      "step": "s09",
+      "targetRps": 18000,
+      "achievedRps": 7855.266666666666,
+      "count": 117829,
+      "avg": 365.61912662461384,
+      "p50": 367.869385,
+      "p95": 532.5294278,
+      "p99": 607.24763892,
+      "max": 892.750823,
+      "dropped": 0,
+      "failRate": 0,
+      "denied429": 0,
+      "healthy": false,
+      "reasons": [
+        "p99>50ms",
+        "achieved<98%"
+      ]
+    },
+    {
+      "step": "s10",
+      "targetRps": 20000,
+      "achievedRps": 8121.066666666667,
+      "count": 121816,
+      "avg": 319.71329767776666,
+      "p50": 298.6933725,
+      "p95": 482.0130825,
+      "p99": 600.3540523500001,
+      "max": 44449.115596,
+      "dropped": 0,
+      "failRate": 0,
+      "denied429": 0,
+      "healthy": false,
+      "reasons": [
+        "p99>50ms",
+        "achieved<98%"
+      ]
+    },
+    {
+      "step": "s11",
+      "targetRps": 22000,
+      "achievedRps": 9049.733333333334,
+      "count": 135746,
+      "avg": 322.99849525732384,
+      "p50": 314.45146450000004,
+      "p95": 480.04746724999995,
+      "p99": 544.8379203499999,
+      "max": 770.687931,
+      "dropped": 0,
+      "failRate": 0,
+      "denied429": 0,
+      "healthy": false,
+      "reasons": [
+        "p99>50ms",
+        "achieved<98%"
+      ]
+    },
+    {
+      "step": "s12",
+      "targetRps": 24000,
+      "achievedRps": 7875.2,
+      "count": 118128,
+      "avg": 371.8619093018814,
+      "p50": 374.4086585,
+      "p95": 519.2661667,
+      "p99": 603.1627308199996,
+      "max": 829.889024,
+      "dropped": 0,
+      "failRate": 0,
+      "denied429": 0,
+      "healthy": false,
+      "reasons": [
+        "p99>50ms",
+        "achieved<98%"
+      ]
+    },
+    {
+      "step": "s13",
+      "targetRps": 26000,
+      "achievedRps": 7757.2,
+      "count": 116358,
+      "avg": 382.52633287448083,
+      "p50": 382.22981100000004,
+      "p95": 580.07304835,
+      "p99": 675.62958953,
+      "max": 891.800754,
+      "dropped": 0,
+      "failRate": 0,
+      "denied429": 0,
+      "healthy": false,
+      "reasons": [
+        "p99>50ms",
+        "achieved<98%"
+      ]
+    },
+    {
+      "step": "s14",
+      "targetRps": 28000,
+      "achievedRps": 8018.866666666667,
+      "count": 120283,
+      "avg": 413.0480486858214,
+      "p50": 313.484048,
+      "p95": 487.63423739999996,
+      "p99": 588.1742459599997,
+      "max": 29812.649127,
+      "dropped": 0,
+      "failRate": 0,
+      "denied429": 0,
+      "healthy": false,
+      "reasons": [
+        "p99>50ms",
+        "achieved<98%"
+      ]
+    },
+    {
+      "step": "s15",
+      "targetRps": 30000,
+      "achievedRps": 8796.8,
+      "count": 131952,
+      "avg": 334.1653709637113,
+      "p50": 320.947637,
+      "p95": 495.06974205,
+      "p99": 579.1791989400001,
+      "max": 761.438207,
+      "dropped": 0,
+      "failRate": 0,
+      "denied429": 0,
+      "healthy": false,
+      "reasons": [
+        "p99>50ms",
+        "achieved<98%"
+      ]
+    }
+  ],
+  "maxHealthyRps": 4000,
+  "maxHealthyAchievedRps": 4000.0666666666666,
+  "ceilingReached": true
+}

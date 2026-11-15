@@ -1,0 +1,4 @@
+*
+!rl-gateway/target/rl-gateway-*-SNAPSHOT.jar
+!rl-control-plane/target/rl-control-plane-*-SNAPSHOT.jar
+!demo-service/target/demo-service-*-SNAPSHOT.jar

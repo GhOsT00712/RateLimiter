@@ -1,0 +1,5 @@
+Overhead @ 3000 rps per scenario (6000 rps total), 60s after 15s warm-up
+baseline  n=180001  avg=0.67 p50=0.66 p95=0.85 p99=1.02 max=7.23 ms
+limited   n=180002  avg=0.97 p50=0.95 p95=1.18 p99=1.40 max=8.18 ms
+added: p50=0.29 avg=0.30 p95=0.33 (target <5) PASS  p99=0.37 (target <10) PASS ms
+429s=0 dropped=4 failed(baseline)=0.0000 failed(limited)=0.0000 clean=false

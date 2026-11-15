@@ -1,0 +1,83 @@
+# 15:33:58
+rl-loadtest-gateway-1-1 cpu=2.49% mem=733.1MiB / 30.19GiB
+rl-loadtest-gateway-2-1 cpu=0.19% mem=577.3MiB / 30.19GiB
+rl-loadtest-control-plane-1 cpu=0.36% mem=342.3MiB / 30.19GiB
+rl-loadtest-redis-1 cpu=1.91% mem=94.76MiB / 30.19GiB
+rl-loadtest-mongo-1 cpu=20.07% mem=374.8MiB / 30.19GiB
+rl-loadtest-demo-service-1 cpu=0.08% mem=713.2MiB / 30.19GiB
+# 15:34:04
+rl-loadtest-gateway-1-1 cpu=0.18% mem=732.8MiB / 30.19GiB
+rl-loadtest-gateway-2-1 cpu=2.47% mem=577.6MiB / 30.19GiB
+rl-loadtest-control-plane-1 cpu=0.18% mem=341.5MiB / 30.19GiB
+rl-loadtest-redis-1 cpu=1.96% mem=94.74MiB / 30.19GiB
+rl-loadtest-mongo-1 cpu=27.99% mem=225.2MiB / 30.19GiB
+rl-loadtest-demo-service-1 cpu=0.08% mem=713.9MiB / 30.19GiB
+# 15:34:12
+rl-loadtest-gateway-1-1 cpu=2.50% mem=737.7MiB / 30.19GiB
+rl-loadtest-gateway-2-1 cpu=0.12% mem=577.1MiB / 30.19GiB
+rl-loadtest-control-plane-1 cpu=0.06% mem=342MiB / 30.19GiB
+rl-loadtest-redis-1 cpu=0.24% mem=95.23MiB / 30.19GiB
+rl-loadtest-mongo-1 cpu=0.34% mem=225MiB / 30.19GiB
+rl-loadtest-demo-service-1 cpu=0.08% mem=713.4MiB / 30.19GiB
+# 15:34:19
+rl-loadtest-gateway-1-1 cpu=0.11% mem=732.8MiB / 30.19GiB
+rl-loadtest-gateway-2-1 cpu=2.45% mem=577.1MiB / 30.19GiB
+rl-loadtest-control-plane-1 cpu=0.32% mem=342.9MiB / 30.19GiB
+rl-loadtest-redis-1 cpu=42.80% mem=94.83MiB / 30.19GiB
+rl-loadtest-mongo-1 cpu=0.45% mem=224.9MiB / 30.19GiB
+rl-loadtest-demo-service-1 cpu=0.11% mem=700.7MiB / 30.19GiB
+# 15:34:27
+immich_server cpu=0.02% mem=629.2MiB / 30.19GiB
+immich_postgres cpu=0.01% mem=78.62MiB / 30.19GiB
+immich_machine_learning cpu=0.12% mem=223.1MiB / 30.19GiB
+immich_redis cpu=0.31% mem=13.96MiB / 30.19GiB
+# 15:34:34
+immich_server cpu=0.02% mem=630.5MiB / 30.19GiB
+immich_postgres cpu=0.00% mem=78.62MiB / 30.19GiB
+immich_machine_learning cpu=0.11% mem=223.8MiB / 30.19GiB
+immich_redis cpu=0.15% mem=14.21MiB / 30.19GiB
+# 15:34:42
+immich_server cpu=0.37% mem=631.9MiB / 30.19GiB
+immich_postgres cpu=0.00% mem=79.38MiB / 30.19GiB
+immich_machine_learning cpu=0.11% mem=223.8MiB / 30.19GiB
+immich_redis cpu=0.31% mem=15.45MiB / 30.19GiB
+# 15:34:49
+immich_server cpu=0.01% mem=631.7MiB / 30.19GiB
+immich_postgres cpu=0.00% mem=79.31MiB / 30.19GiB
+immich_machine_learning cpu=0.12% mem=223.8MiB / 30.19GiB
+immich_redis cpu=0.14% mem=15.35MiB / 30.19GiB
+# 15:34:57
+immich_server cpu=0.31% mem=631.9MiB / 30.19GiB
+immich_postgres cpu=0.00% mem=79.31MiB / 30.19GiB
+immich_machine_learning cpu=0.12% mem=225MiB / 30.19GiB
+immich_redis cpu=0.13% mem=15.6MiB / 30.19GiB
+# 15:35:04
+immich_server cpu=0.03% mem=631.8MiB / 30.19GiB
+immich_postgres cpu=0.00% mem=79.31MiB / 30.19GiB
+immich_machine_learning cpu=0.12% mem=224.8MiB / 30.19GiB
+immich_redis cpu=0.15% mem=15.54MiB / 30.19GiB
+# 15:35:12
+immich_server cpu=0.32% mem=631.7MiB / 30.19GiB
+immich_postgres cpu=0.00% mem=79.31MiB / 30.19GiB
+immich_machine_learning cpu=0.12% mem=224.8MiB / 30.19GiB
+immich_redis cpu=0.25% mem=15.98MiB / 30.19GiB
+# 15:35:19
+immich_server cpu=0.01% mem=631.7MiB / 30.19GiB
+immich_postgres cpu=0.01% mem=79.31MiB / 30.19GiB
+immich_machine_learning cpu=0.13% mem=224.8MiB / 30.19GiB
+immich_redis cpu=0.15% mem=15.73MiB / 30.19GiB
+# 15:35:27
+immich_server cpu=0.27% mem=631.6MiB / 30.19GiB
+immich_postgres cpu=0.00% mem=79.31MiB / 30.19GiB
+immich_machine_learning cpu=0.12% mem=225.2MiB / 30.19GiB
+immich_redis cpu=0.14% mem=15.7MiB / 30.19GiB
+# 15:35:34
+immich_server cpu=0.03% mem=631.8MiB / 30.19GiB
+immich_postgres cpu=0.00% mem=79.31MiB / 30.19GiB
+immich_machine_learning cpu=0.12% mem=225.4MiB / 30.19GiB
+immich_redis cpu=0.14% mem=15.95MiB / 30.19GiB
+# 15:35:42
+immich_server cpu=0.16% mem=632.5MiB / 30.19GiB
+immich_postgres cpu=0.01% mem=79.25MiB / 30.19GiB
+immich_machine_learning cpu=0.11% mem=225.4MiB / 30.19GiB
+immich_redis cpu=0.26% mem=15.89MiB / 30.19GiB
