@@ -1,12 +1,16 @@
 package com.ratelimiter.gateway.rules;
 
 import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Comparator;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import com.ratelimiter.gateway.sync.SyncProperties;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
@@ -34,17 +38,51 @@ public class RuleTable {
 
     private final AtomicReference<State> state = new AtomicReference<>(new State(null, List.of(), List.of()));
 
-    public RuleTable(ResourceLoader loader, @Value("${rl.rules-file:classpath:rules.json}") String location) {
-        Resource resource = loader.getResource(location);
+    private static final JsonMapper MAPPER = JsonMapper.builder().build();
+
+    /** Rules from {@code rl.rules-file} only (no last-known-good snapshot). */
+    public RuleTable(ResourceLoader loader, String rulesFile) {
+        this(loader, rulesFile, null);
+    }
+
+    /**
+     * Startup order: last-known-good snapshot file, else {@code rl.rules-file}, else empty. Never fails startup
+     * because of a bad file.
+     */
+    @Autowired
+    public RuleTable(ResourceLoader loader, @Value("${rl.rules-file:}") String rulesFile, SyncProperties sync) {
+        if (sync != null && loadSnapshotFile(sync.snapshotFile())) {
+            return;
+        }
+        if (rulesFile == null || rulesFile.isBlank()) {
+            log.info("No rules found at startup; starting with an empty rule table");
+            return;
+        }
+        Resource resource = loader.getResource(rulesFile);
         if (!resource.exists()) {
-            log.warn("Rules file {} not found; starting with an empty rule table", location);
+            log.warn("Rules file {} not found; starting with an empty rule table", rulesFile);
             return;
         }
         try (InputStream in = resource.getInputStream()) {
-            replace(JsonMapper.builder().build().readValue(in, RuleSnapshot.class));
-            log.info("Loaded {} rules from {}", state.get().rules().size(), location);
+            replace(MAPPER.readValue(in, RuleSnapshot.class));
+            log.info("Loaded {} rules from {}", state.get().rules().size(), rulesFile);
         } catch (Exception e) {
-            throw new IllegalStateException("Cannot read rules file " + location, e);
+            throw new IllegalStateException("Cannot read rules file " + rulesFile, e);
+        }
+    }
+
+    private boolean loadSnapshotFile(Path file) {
+        if (file == null || !Files.isRegularFile(file)) {
+            return false;
+        }
+        try {
+            replace(MAPPER.readValue(Files.readAllBytes(file), RuleSnapshot.class));
+            log.info("Loaded {} rules (etag {}) from snapshot file {}", state.get().rules().size(),
+                    state.get().etag(), file);
+            return true;
+        } catch (Exception e) {
+            log.warn("Ignoring unreadable snapshot file {}: {}", file, e.toString());
+            return false;
         }
     }
 

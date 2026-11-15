@@ -37,6 +37,8 @@ class RateLimitFilterTest {
     static void props(DynamicPropertyRegistry registry) {
         String uri = "http://localhost:" + BACKEND.getAddress().getPort();
         registry.add("rl.rules-file", () -> "classpath:test-rules.json");
+        registry.add("rl.sync.enabled", () -> "false");
+        registry.add("rl.sync.snapshot-file", () -> "target/test-nonexistent/rules-snapshot.json");
         String p = "spring.cloud.gateway.server.webflux.routes[";
         // These replace the route list from application.yml wholesale, so "orders" is redeclared.
         List<String> services = List.of("orders", "anon", "apikey", "byip", "glob", "multi", "disabled", "mixed");

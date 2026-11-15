@@ -16,5 +16,3 @@ spring:
               uri: http://localhost:8082
               predicates:
                 - Path=/v1/orders/**
-rl:
-  rules-file: classpath:rules.json
