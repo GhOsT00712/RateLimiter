@@ -7,3 +7,14 @@ spring:
     redis:
       host: localhost
       port: 6379
+  cloud:
+    gateway:
+      server:
+        webflux:
+          routes:
+            - id: orders
+              uri: http://localhost:8082
+              predicates:
+                - Path=/v1/orders/**
+rl:
+  rules-file: classpath:rules.json

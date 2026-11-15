@@ -1,0 +1,14 @@
+{
+  "etag": "test",
+  "rules": [
+    { "serviceId": "orders", "ruleId": "per-user", "match": { "method": "GET", "path": "/v1/orders/**" }, "keyBy": "userId", "capacity": 5, "refillPerSec": 0.001, "onFailure": "local_fallback", "enabled": true, "version": 0, "updatedAt": "2026-11-15T08:46:10.696Z" },
+    { "serviceId": "anon", "ruleId": "anon-user", "match": { "method": "*", "path": "*" }, "keyBy": "userId", "capacity": 2, "refillPerSec": 0.001, "onFailure": "open", "enabled": true },
+    { "serviceId": "apikey", "ruleId": "per-key", "match": { "method": "*", "path": "/apikey/**" }, "keyBy": "apiKey", "capacity": 2, "refillPerSec": 0.001, "onFailure": "closed", "enabled": true },
+    { "serviceId": "byip", "ruleId": "per-ip", "match": { "method": "*", "path": "/byip/**" }, "keyBy": "ip", "capacity": 2, "refillPerSec": 0.001, "onFailure": "open", "enabled": true },
+    { "serviceId": "glob", "ruleId": "all", "match": { "method": "*", "path": "/glob/**" }, "keyBy": "global", "capacity": 2, "refillPerSec": 0.001, "onFailure": "open", "enabled": true },
+    { "serviceId": "multi", "ruleId": "per-user", "match": { "method": "*", "path": "/multi/**" }, "keyBy": "userId", "capacity": 5, "refillPerSec": 0.001, "onFailure": "open", "enabled": true },
+    { "serviceId": "multi", "ruleId": "global", "match": { "method": "*", "path": "/multi/**" }, "keyBy": "global", "capacity": 3, "refillPerSec": 0.001, "onFailure": "open", "enabled": true },
+    { "serviceId": "disabled", "ruleId": "off", "match": { "method": "*", "path": "*" }, "keyBy": "global", "capacity": 1, "refillPerSec": 0.001, "onFailure": "open", "enabled": false },
+    { "serviceId": "mixed", "ruleId": "limited-get", "match": { "method": "GET", "path": "/mixed/limited/**" }, "keyBy": "global", "capacity": 1, "refillPerSec": 0.001, "onFailure": "open", "enabled": true }
+  ]
+}
