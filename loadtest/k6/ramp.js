@@ -14,7 +14,10 @@ const STEPS = Number(__ENV.STEPS || 10);
 const STEP_SEC = Number(__ENV.STEP_SEC || 20);
 const WARMUP = Number(__ENV.WARMUP || 15);
 const CEILING_MS = Number(__ENV.CEILING_MS || 50);
-const USERS = Number(__ENV.USERS || 100000);
+// VARIANT=cold: 100,000 distinct users; VARIANT=hot: HOT_USERS identities (leasing active, nothing denied)
+const VARIANT = __ENV.VARIANT || 'cold';
+const USERS = Number(__ENV.USERS || (VARIANT === 'hot' ? 50 : 100000));
+const PATH = VARIANT === 'hot' ? 'hot' : 'limited';
 
 const denied = new Counter('denied_429');
 const expected200 = http.expectedStatuses(200);
@@ -51,14 +54,14 @@ export const options = { scenarios, thresholds, summaryTrendStats: TREND_STATS }
 
 export function setup() {
   const runId = newRunId();
-  const ruleId = `lt-ramp-${runId}`;
+  const ruleId = `lt-ramp-${VARIANT}-${runId}`;
   putRule(ruleId, {
-    match: { method: 'GET', path: '/v1/orders/limited/**' },
+    match: { method: 'GET', path: `/v1/orders/${PATH}/**` },
     keyBy: 'userId',
     capacity: 1000000,
     refillPerSec: 1000,
   });
-  waitForSync('/v1/orders/limited/probe', `probe-${runId}`);
+  waitForSync(`/v1/orders/${PATH}/probe`, `probe-${runId}`);
   return { runId, ruleId };
 }
 
@@ -68,7 +71,8 @@ export function teardown(d) {
 
 export function hit(d) {
   const i = exec.scenario.iterationInTest;
-  const res = http.get(`${GW1}/v1/orders/limited/${i % 1000}`, {
+  if (i === 0) console.log(`STEPSTART ${exec.scenario.name} ${Date.now()}`); // host maps these to Redis/docker samples
+  const res = http.get(`${GW1}/v1/orders/${PATH}/${i % 1000}`, {
     headers: { 'X-User-Id': `u-${d.runId}-${i % USERS}` },
     responseCallback: expected200,
   });
@@ -98,6 +102,8 @@ export function handleSummary(data) {
   const lastGood = firstBad === null ? STEPS - 1 : firstBad - 1;
   const result = {
     scenario: 'ramp',
+    variant: VARIANT,
+    distinctUsers: USERS,
     date: new Date().toISOString(),
     gateway: 'gateway-1 only',
     stepSec: STEP_SEC,
@@ -107,11 +113,11 @@ export function handleSummary(data) {
     maxHealthyAchievedRps: lastGood >= 0 ? steps[lastGood].achievedRps : null,
     ceilingReached: firstBad !== null,
   };
-  const lines = [`Ramp on gateway-1, ${STEP_SEC}s steps, p99 ceiling ${CEILING_MS} ms`];
+  const lines = [`Ramp (${VARIANT} keys) on gateway-1, ${STEP_SEC}s steps, p99 ceiling ${CEILING_MS} ms`];
   for (const s of steps) {
     lines.push(`${s.step} target=${String(s.targetRps).padEnd(6)} got=${f(s.achievedRps, 0).padEnd(6)} p50=${f(s.p50)} p95=${f(s.p95)} p99=${f(s.p99)} max=${f(s.max)} dropped=${s.dropped} fail=${f(s.failRate, 4)} ${s.healthy ? 'ok' : 'BAD ' + s.reasons.join(',')}`);
   }
   lines.push(`max healthy step: ${result.maxHealthyRps} rps (ceiling reached: ${result.ceilingReached})`, '');
-  const out = __ENV.OUT || '/results/ramp.json';
+  const out = __ENV.OUT || `/results/ramp-${VARIANT}.json`;
   return { stdout: lines.join('\n'), [out]: JSON.stringify(result, null, 2) };
 }

@@ -1,0 +1,38 @@
+ Container rl-loadtest-gateway-1-1 Running 
+ Container rl-loadtest-gateway-2-1 Running 
+ Container rl-loadtest-redis-1 Running 
+ Container rl-loadtest-mongo-1 Running 
+ Container rl-loadtest-control-plane-1 Running 
+ Container rl-loadtest-demo-service-1 Running 
+ Container rl-loadtest-redis-1 Waiting 
+ Container rl-loadtest-mongo-1 Waiting 
+ Container rl-loadtest-demo-service-1 Waiting 
+ Container rl-loadtest-demo-service-1 Healthy 
+ Container rl-loadtest-redis-1 Healthy 
+ Container rl-loadtest-mongo-1 Healthy 
+ Container rl-loadtest-control-plane-1 Waiting 
+ Container rl-loadtest-control-plane-1 Healthy 
+ Container rl-loadtest-gateway-1-1 Waiting 
+ Container rl-loadtest-gateway-2-1 Waiting 
+ Container rl-loadtest-gateway-2-1 Healthy 
+ Container rl-loadtest-gateway-1-1 Healthy 
+ Container rl-k6-overhead-cold-run2 Creating 
+ Container rl-k6-overhead-cold-run2 Created 
+         /\      Grafana   /‾‾/  
+    /\  /  \     |\  __   /  /   
+   /  \/    \    | |/ /  /   ‾‾\ 
+  /          \   |   (  |  (‾)  |
+ / __________ \  |_|\_\  \_____/ 
+     execution: local
+        script: /scripts/overhead.js
+        output: -
+     scenarios: (100.00%) 4 scenarios, 8000 max VUs, 1m45s max duration (incl. graceful stop):
+              * warm_baseline: 3000.00 iterations/s for 15s (maxVUs: 200-2000, exec: baseline, gracefulStop: 30s)
+              * warm_limited: 3000.00 iterations/s for 15s (maxVUs: 200-2000, exec: limited, gracefulStop: 30s)
+              * baseline: 3000.00 iterations/s for 1m0s (maxVUs: 200-2000, exec: baseline, startTime: 15s, gracefulStop: 30s)
+              * limited: 3000.00 iterations/s for 1m0s (maxVUs: 200-2000, exec: limited, startTime: 15s, gracefulStop: 30s)
+Overhead (cold keys, 50000 users) @ 3000 rps per scenario (6000 rps total), 60s after 15s warm-up
+baseline  n=180001  avg=0.69 p50=0.68 p95=0.91 p99=1.09 max=7.90 ms
+limited   n=180001  avg=1.04 p50=1.01 p95=1.27 p99=1.49 max=9.14 ms
+added: p50=0.34 avg=0.34 p95=0.36 (target <5) PASS  p99=0.39 (target <10) PASS ms
+429s=0 dropped=0 failed(baseline)=0.0000 failed(limited)=0.0000 clean=true

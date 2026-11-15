@@ -1,0 +1,45 @@
+ Container rl-loadtest-gateway-1-1 Running 
+ Container rl-loadtest-gateway-2-1 Running 
+ Container rl-loadtest-redis-1 Running 
+ Container rl-loadtest-mongo-1 Running 
+ Container rl-loadtest-control-plane-1 Running 
+ Container rl-loadtest-demo-service-1 Running 
+ Container rl-loadtest-redis-1 Waiting 
+ Container rl-loadtest-mongo-1 Waiting 
+ Container rl-loadtest-demo-service-1 Waiting 
+ Container rl-loadtest-demo-service-1 Healthy 
+ Container rl-loadtest-redis-1 Healthy 
+ Container rl-loadtest-mongo-1 Healthy 
+ Container rl-loadtest-control-plane-1 Waiting 
+ Container rl-loadtest-control-plane-1 Healthy 
+ Container rl-loadtest-gateway-2-1 Waiting 
+ Container rl-loadtest-gateway-1-1 Waiting 
+ Container rl-loadtest-gateway-1-1 Healthy 
+ Container rl-loadtest-gateway-2-1 Healthy 
+ Container rl-k6-overhead-cold Creating 
+ Container rl-k6-overhead-cold Created 
+         /\      Grafana   /‾‾/  
+    /\  /  \     |\  __   /  /   
+   /  \/    \    | |/ /  /   ‾‾\ 
+  /          \   |   (  |  (‾)  |
+ / __________ \  |_|\_\  \_____/ 
+     execution: local
+        script: /scripts/overhead.js
+        output: -
+     scenarios: (100.00%) 4 scenarios, 8000 max VUs, 1m45s max duration (incl. graceful stop):
+              * warm_baseline: 3000.00 iterations/s for 15s (maxVUs: 200-2000, exec: baseline, gracefulStop: 30s)
+              * warm_limited: 3000.00 iterations/s for 15s (maxVUs: 200-2000, exec: limited, gracefulStop: 30s)
+              * baseline: 3000.00 iterations/s for 1m0s (maxVUs: 200-2000, exec: baseline, startTime: 15s, gracefulStop: 30s)
+              * limited: 3000.00 iterations/s for 1m0s (maxVUs: 200-2000, exec: limited, startTime: 15s, gracefulStop: 30s)
+Run             [ 100% ] setup()
+warm_baseline   [   0% ]
+warm_limited    [   0% ]
+Run             [ 100% ] setup()
+warm_baseline   [   0% ]
+warm_limited    [   0% ]
+Overhead (cold keys, 50000 users) @ 3000 rps per scenario (6000 rps total), 60s after 15s warm-up
+baseline  n=180001  avg=1.58 p50=0.68 p95=1.10 p99=34.68 max=96.62 ms
+limited   n=180001  avg=1.97 p50=1.03 p95=1.55 p99=35.86 max=101.54 ms
+added: p50=0.35 avg=0.39 p95=0.45 (target <5) PASS  p99=1.18 (target <10) PASS ms
+429s=0 dropped=7946 failed(baseline)=0.0000 failed(limited)=0.0000 clean=false
+time="2026-11-15T10:32:33Z" level=error msg="thresholds on metrics 'dropped_iterations' have been crossed"

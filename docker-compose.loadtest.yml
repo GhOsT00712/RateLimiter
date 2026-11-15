@@ -21,6 +21,8 @@ x-gateway: &gateway
     RL_SYNC_SNAPSHOT_FILE: /tmp/rules-snapshot.json
     RL_NODE_COUNT: "2"
     RL_LEASE_ENABLED: "true"
+    # round 2: JVM heap / GC numbers for scenarios 6 and 9 (read-only observability)
+    MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE: health,metrics
   depends_on:
     redis: { condition: service_healthy }
     control-plane: { condition: service_healthy }

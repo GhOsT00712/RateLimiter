@@ -11,7 +11,11 @@ import { GW1, GW2, TREND_STATS, newRunId, putRule, deleteRule, waitForSync, lat,
 const RATE = Number(__ENV.RATE || 3000); // per scenario (baseline and limited each)
 const DURATION = Number(__ENV.DURATION || 60);
 const WARMUP = Number(__ENV.WARMUP || 15);
-const USERS = Number(__ENV.USERS || 50000);
+// VARIANT=cold: 50,000 distinct users (round 1 shape; with leasing each is a low-traffic key, one Redis call per request)
+// VARIANT=hot:  HOT_USERS identities share the rule (round 2: leasing active, nothing denied)
+const VARIANT = __ENV.VARIANT || 'cold';
+const USERS = Number(__ENV.USERS || (VARIANT === 'hot' ? 50 : 50000));
+const LIMITED_PATH = VARIANT === 'hot' ? 'hot' : 'limited';
 const TARGET_P95 = 5;
 const TARGET_P99 = 10;
 
@@ -53,7 +57,7 @@ export const options = {
 };
 
 const RULE_BODY = {
-  match: { method: 'GET', path: '/v1/orders/limited/**' },
+  match: { method: 'GET', path: `/v1/orders/${LIMITED_PATH}/**` },
   keyBy: 'userId',
   capacity: 1000000,
   refillPerSec: 1000,
@@ -61,9 +65,9 @@ const RULE_BODY = {
 
 export function setup() {
   const runId = newRunId();
-  const ruleId = `lt-overhead-${runId}`;
+  const ruleId = `lt-overhead-${VARIANT}-${runId}`;
   putRule(ruleId, RULE_BODY);
-  waitForSync('/v1/orders/limited/probe', `probe-${runId}`);
+  waitForSync(`/v1/orders/${LIMITED_PATH}/probe`, `probe-${runId}`);
   return { runId, ruleId };
 }
 
@@ -81,7 +85,7 @@ export function baseline() {
 
 export function limited(d) {
   const i = exec.scenario.iterationInTest;
-  const res = http.get(`${gw()}/v1/orders/limited/${i % 1000}`, {
+  const res = http.get(`${gw()}/v1/orders/${LIMITED_PATH}/${i % 1000}`, {
     headers: { 'X-User-Id': `u-${d.runId}-${i % USERS}` },
     responseCallback: expected200,
   });
@@ -104,6 +108,8 @@ export function handleSummary(data) {
   const clean = d429 === 0 && dropped === 0 && failB === 0 && failL === 0;
   const result = {
     scenario: 'overhead',
+    variant: VARIANT,
+    distinctUsers: USERS,
     date: new Date().toISOString(),
     ratePerScenarioRps: RATE,
     totalRps: RATE * 2,
@@ -120,13 +126,13 @@ export function handleSummary(data) {
   };
   const row = (n, x) => `${n.padEnd(9)} n=${String(x.count).padEnd(7)} avg=${f(x.avg)} p50=${f(x.p50)} p95=${f(x.p95)} p99=${f(x.p99)} max=${f(x.max)} ms`;
   const text = [
-    `Overhead @ ${RATE} rps per scenario (${RATE * 2} rps total), ${DURATION}s after ${WARMUP}s warm-up`,
+    `Overhead (${VARIANT} keys, ${USERS} users) @ ${RATE} rps per scenario (${RATE * 2} rps total), ${DURATION}s after ${WARMUP}s warm-up`,
     row('baseline', b),
     row('limited', l),
     `added: p50=${f(addP50)} avg=${f(addAvg)} p95=${f(add95)} (target <${TARGET_P95}) ${pass95 ? 'PASS' : 'FAIL'}  p99=${f(add99)} (target <${TARGET_P99}) ${pass99 ? 'PASS' : 'FAIL'} ms`,
     `429s=${d429} dropped=${dropped} failed(baseline)=${f(failB, 4)} failed(limited)=${f(failL, 4)} clean=${clean}`,
     '',
   ].join('\n');
-  const out = __ENV.OUT || `/results/overhead-${RATE}.json`;
+  const out = __ENV.OUT || `/results/overhead-${VARIANT}-${RATE}.json`;
   return { stdout: text, [out]: JSON.stringify(result, null, 2) };
 }

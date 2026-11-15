@@ -104,3 +104,56 @@ Leasing (phase 6) is meant to cut the Redis call rate far below one per request;
 - Latency percentiles come from k6's `http_req_duration` and include the demo-service hop for both baseline and limited requests; the "added" figure is the difference between the two, which cancels it.
 - Results depend on JIT warm-up (see the cold ramp note) and on the host's other load; the ceiling step moved by one step (6,000 to 6,500) between two ramps.
 - Not covered here: scenarios 5 to 9 (burst, key cardinality, hot key, failures, soak).
+
+
+---
+
+# Round 2 (2026-11-15): with token leasing
+
+Stack as in round 1, plus `RL_NODE_COUNT=2`, `RL_LEASE_ENABLED=true` and `MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE=health,metrics` (read-only JVM metrics) on both gateways. Jars built with `mvn -B -Dmaven.test.skip=true package`. CPU limits unchanged (gateways 2 CPUs each, Redis 2, k6 8).
+
+**Status: round 2 was cut short on request. Only scenarios 1+2 were run. Scenarios 3 to 9 were NOT run, and no number for them exists.** The k6 scripts and `run.sh` entries for all of them were written but only the overhead scenario was exercised; the others are untested code.
+
+## How to rerun (round 2)
+
+```
+loadtest/run.sh up
+loadtest/run.sh r2 overhead-cold | overhead-hot | ramp-cold | ramp-hot | accuracy
+loadtest/run.sh r2 burst-cold|burst-hot   (CAP=<per-node rps>)   cardinality
+loadtest/run.sh r2 hotkey (RATE=<rps>)    fail-a | fail-b | fail-c
+loadtest/run.sh r2 soak (PER_NODE=<rps per gateway>, DURATION=1200)
+```
+`TAG=<suffix>` renames the result files (`r2-<scenario>-<suffix>.*`). Existing result files are never overwritten. Samplers (`sample-stats.sh`) are bounded by a max duration, exit when the launching shell is gone, and `run.sh` kills them and removes its k6 containers on exit. Fault injection (Redis pause, control-plane stop) is timed from the k6 `T0` log line, with VM/host clock skew measured.
+
+## Scenarios 1 + 2: baseline vs limiter overhead, 3,000 req/s per scenario
+
+Same shape as round 1 (baseline and limited concurrently, 15 s warm-up + 60 s, both gateways). "Cold keys" = 50,000 distinct users (low-traffic keys, one Redis call per request). "Hot keys" = 50 users on one rule (cap 1,000,000, refill 1000/s, nothing denied; leasing active).
+
+| Variant / run | Baseline p50 / p95 / p99 | Limited p50 / p95 / p99 | Added p95 | Added p99 | Target (5 / 10 ms) | Notes |
+|---|---|---|---|---|---|---|
+| Cold, run 1 | 0.68 / 1.10 / 34.68 | 1.03 / 1.55 / 35.86 | 0.45 | 1.18 | PASS | first run on freshly started JVMs: 7,946 dropped iterations, p99 inflated for both |
+| Cold, run 2 | 0.68 / 0.91 / 1.09 | 1.01 / 1.27 / 1.49 | 0.36 | 0.39 | PASS | clean |
+| Cold, run 3 | 0.67 / 0.87 / 1.04 | 0.99 / 1.22 / 1.41 | 0.35 | 0.37 | PASS | clean |
+| Hot, run 1 | 0.66 / 0.87 / 1.04 | 0.68 / 1.01 / 1.25 | 0.13 | 0.20 | PASS | clean |
+| Hot, run 2 | 0.66 / 0.86 / 1.02 | 0.66 / 0.98 / 1.21 | 0.12 | 0.19 | PASS | clean |
+
+(The hot-key third run was started and then aborted on request; its files were deleted.) No 429s, no failed requests, no dropped iterations except cold run 1. Zero `Redis unavailable` / `Redis recovered` / `LEAK:` / `OutOfMemoryError` lines and zero restarts in every one of these runs (`r2-overhead-*-logs.txt`).
+
+### Round 1 vs round 2 (scenarios 1 + 2 only)
+
+| | Round 1 (direct) added p95 / p99 | Round 2 cold keys | Round 2 hot keys |
+|---|---|---|---|
+| Added latency | 0.32-0.33 / 0.36-0.38 ms | 0.35-0.36 / 0.37-0.39 ms (warm runs) | 0.12-0.13 / 0.19-0.20 ms |
+
+Cold keys are unchanged, as expected (they behave like direct mode). Hot keys add about 0.12 ms at p95 and 0.2 ms at p99, about a third of the cold figure, which is consistent with most requests being served from the local lease. I did not measure Redis calls per second for these runs, so the call reduction itself is not quantified. Scenarios 3 and 4 (capacity, accuracy) have no round 2 numbers.
+
+## Not run (no data)
+
+3 capacity ramp (cold and hot), 4 accuracy incl. 4c, 5 burst, 6 key cardinality, 7 hot key, 8 failures under load (Redis pause, control plane stop, rule change), 9 soak (never started). Consequently there is no updated 1M req/s extrapolation: the round 1 extrapolation above (167 nodes, ~1M Redis calls/s in direct mode) still stands as the only estimate, and the effect of leasing on it is unmeasured.
+
+## Observations and caveats
+
+- The first overhead run after a fresh build had 7,946 dropped iterations and p99 around 35 ms (cold JVMs); runs after it were clean. Round 1 already noted cold-start sensitivity.
+- No bugs, breaker flapping, leaks or restarts were observed, but only the overhead scenario ran, so that says nothing about the failure paths or long-term behaviour.
+- `sample-stats.sh` was rewritten (bounded, parent-aware, refuses to overwrite); the round 1 usage `sample-stats.sh <file> [interval]` still works.
+- Same single-machine caveats as round 1: no network hop to Redis, k6 on the same host.

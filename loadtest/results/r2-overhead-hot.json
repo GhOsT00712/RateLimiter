@@ -1,0 +1,47 @@
+{
+  "scenario": "overhead",
+  "variant": "hot",
+  "distinctUsers": 50,
+  "date": "2026-11-15T10:36:53.617Z",
+  "ratePerScenarioRps": 3000,
+  "totalRps": 6000,
+  "durationSec": 60,
+  "warmupSec": 15,
+  "baseline": {
+    "count": 180001,
+    "avg": 0.6719036820851101,
+    "p50": 0.662215,
+    "p95": 0.873218,
+    "p99": 1.041173,
+    "max": 8.363282
+  },
+  "limited": {
+    "count": 180001,
+    "avg": 0.7018764340809142,
+    "p50": 0.678139,
+    "p95": 1.005641,
+    "p99": 1.245416,
+    "max": 9.301792
+  },
+  "added": {
+    "p50": 0.01592400000000005,
+    "avg": 0.02997275199580407,
+    "p95": 0.13242299999999996,
+    "p99": 0.20424300000000017
+  },
+  "targets": {
+    "p95Ms": 5,
+    "p99Ms": 10
+  },
+  "denied429": 0,
+  "droppedIterations": 0,
+  "failedRate": {
+    "baseline": 0,
+    "limited": 0
+  },
+  "pass": {
+    "addedP95": true,
+    "addedP99": true,
+    "cleanRun": true
+  }
+}

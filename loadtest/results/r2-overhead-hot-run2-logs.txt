@@ -1,0 +1,2 @@
+gateway-1: redis_unavailable=0 redis_recovered=0 leak=0 oom=0 errors=0 restarts=0 state=running
+gateway-2: redis_unavailable=0 redis_recovered=0 leak=0 oom=0 errors=0 restarts=0 state=running

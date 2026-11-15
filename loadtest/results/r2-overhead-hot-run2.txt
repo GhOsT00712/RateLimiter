@@ -1,0 +1,25 @@
+ Container rl-loadtest-demo-service-1 Running 
+ Container rl-loadtest-gateway-1-1 Running 
+ Container rl-loadtest-gateway-2-1 Running 
+ Container rl-loadtest-redis-1 Running 
+ Container rl-loadtest-mongo-1 Running 
+ Container rl-loadtest-control-plane-1 Running 
+ Container rl-loadtest-mongo-1 Waiting 
+ Container rl-loadtest-redis-1 Waiting 
+ Container rl-loadtest-demo-service-1 Waiting 
+ Container rl-loadtest-demo-service-1 Healthy 
+ Container rl-loadtest-mongo-1 Healthy 
+ Container rl-loadtest-control-plane-1 Waiting 
+ Container rl-loadtest-redis-1 Healthy 
+ Container rl-loadtest-control-plane-1 Healthy 
+ Container rl-loadtest-gateway-1-1 Waiting 
+ Container rl-loadtest-gateway-2-1 Waiting 
+ Container rl-loadtest-gateway-1-1 Healthy 
+ Container rl-loadtest-gateway-2-1 Healthy 
+ Container rl-k6-overhead-hot-run2 Creating 
+ Container rl-k6-overhead-hot-run2 Created 
+Overhead (hot keys, 50 users) @ 3000 rps per scenario (6000 rps total), 60s after 15s warm-up
+baseline  n=180001  avg=0.67 p50=0.66 p95=0.86 p99=1.02 max=6.24 ms
+limited   n=180001  avg=0.68 p50=0.66 p95=0.98 p99=1.21 max=4.96 ms
+added: p50=-0.00 avg=0.01 p95=0.12 (target <5) PASS  p99=0.19 (target <10) PASS ms
+429s=0 dropped=0 failed(baseline)=0.0000 failed(limited)=0.0000 clean=true
