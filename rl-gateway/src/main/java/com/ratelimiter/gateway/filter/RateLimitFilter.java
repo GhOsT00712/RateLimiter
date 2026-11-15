@@ -6,12 +6,10 @@ import java.util.Comparator;
 import java.util.List;
 
 import com.ratelimiter.gateway.limiter.BucketKey;
-import com.ratelimiter.gateway.limiter.Decision;
-import com.ratelimiter.gateway.limiter.TokenBucketClient;
+import com.ratelimiter.gateway.limiter.LeasingLimiter;
+import com.ratelimiter.gateway.limiter.Outcome;
 import com.ratelimiter.gateway.rules.Rule;
 import com.ratelimiter.gateway.rules.RuleTable;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.cloud.gateway.route.Route;
@@ -28,17 +26,15 @@ import reactor.core.publisher.Mono;
 @Component
 public class RateLimitFilter implements GlobalFilter, Ordered {
 
-    private static final Logger log = LoggerFactory.getLogger(RateLimitFilter.class);
-
-    private record Hit(Rule rule, Decision decision) {
+    private record Hit(Rule rule, Outcome outcome) {
     }
 
     private final RuleTable rules;
-    private final TokenBucketClient client;
+    private final LeasingLimiter limiter;
 
-    public RateLimitFilter(RuleTable rules, TokenBucketClient client) {
+    public RateLimitFilter(RuleTable rules, LeasingLimiter limiter) {
         this.rules = rules;
-        this.client = client;
+        this.limiter = limiter;
     }
 
     @Override
@@ -60,38 +56,46 @@ public class RateLimitFilter implements GlobalFilter, Ordered {
         }
         String remoteIp = remoteIp(exchange);
 
-        // Sequential; stops at the first denial. Tokens spent on earlier rules are not returned.
+        // Sequential; stops at the first rejection. Tokens spent on earlier rules are not returned.
+        // The limiter resolves Redis failures per rule (onFailure), so this never errors.
         return Flux.fromIterable(matching)
-                .concatMap(r -> client.acquire(BucketKey.of(serviceId, r.ruleId(), identity(r, exchange, remoteIp)),
-                        r.capacity(), r.refillPerSec(), 1).map(d -> new Hit(r, d)), 1)
-                .takeUntil(h -> !h.decision().allowed())
+                .concatMap(r -> limiter.check(BucketKey.of(serviceId, r.ruleId(), identity(r, exchange, remoteIp)), r)
+                        .map(o -> new Hit(r, o)), 1)
+                .takeUntil(h -> h.outcome().rejected())
                 .collectList()
-                // Fail open for now; honouring each rule's onFailure is a later phase.
-                .onErrorResume(e -> {
-                    log.warn("Rate limit check failed, letting request through: {}", e.toString());
-                    return Mono.just(List.of());
-                })
                 .flatMap(hits -> {
-                    if (hits.isEmpty()) {
-                        return chain.filter(exchange);
-                    }
                     Hit last = hits.get(hits.size() - 1);
-                    if (!last.decision().allowed()) {
+                    if (last.outcome().kind() == Outcome.Kind.DENIED) {
                         return deny(exchange, last);
                     }
-                    Hit tightest = hits.stream()
-                            .min(Comparator.comparingLong((Hit h) -> h.decision().remaining())).get();
-                    exchange.getResponse().beforeCommit(() -> {
-                        addHeaders(exchange.getResponse().getHeaders(), tightest);
-                        return Mono.empty();
-                    });
+                    if (last.outcome().kind() == Outcome.Kind.UNAVAILABLE) {
+                        return unavailable(exchange, last);
+                    }
+                    // Rules allowed without a Redis answer (failure modes) contribute no headers.
+                    Hit tightest = hits.stream().filter(h -> h.outcome().kind() == Outcome.Kind.ALLOWED)
+                            .min(Comparator.comparingLong((Hit h) -> h.outcome().remaining())).orElse(null);
+                    if (tightest != null) {
+                        exchange.getResponse().beforeCommit(() -> {
+                            addHeaders(exchange.getResponse().getHeaders(), tightest);
+                            return Mono.empty();
+                        });
+                    }
                     return chain.filter(exchange);
                 });
     }
 
+    private static Mono<Void> unavailable(ServerWebExchange exchange, Hit hit) {
+        var response = exchange.getResponse();
+        response.setStatusCode(HttpStatus.SERVICE_UNAVAILABLE);
+        response.getHeaders().set(HttpHeaders.RETRY_AFTER, "1");
+        response.getHeaders().setContentType(MediaType.APPLICATION_JSON);
+        String body = "{\"error\":\"rate_limiter_unavailable\",\"ruleId\":\"" + escape(hit.rule().ruleId()) + "\"}";
+        return response.writeWith(Mono.just(response.bufferFactory().wrap(body.getBytes(StandardCharsets.UTF_8))));
+    }
+
     private static void addHeaders(HttpHeaders headers, Hit hit) {
         Rule r = hit.rule();
-        long remaining = hit.decision().remaining();
+        long remaining = hit.outcome().remaining();
         long reset = (long) Math.ceil((r.capacity() - remaining) / r.refillPerSec());
         headers.set("X-RateLimit-Limit", Long.toString(r.capacity()));
         headers.set("X-RateLimit-Remaining", Long.toString(remaining));
@@ -99,7 +103,7 @@ public class RateLimitFilter implements GlobalFilter, Ordered {
     }
 
     private static Mono<Void> deny(ServerWebExchange exchange, Hit hit) {
-        long retryMs = hit.decision().retryAfterMs();
+        long retryMs = hit.outcome().retryAfterMs();
         long seconds = Math.max(1, (long) Math.ceil(retryMs / 1000.0));
         var response = exchange.getResponse();
         response.setStatusCode(HttpStatus.TOO_MANY_REQUESTS);

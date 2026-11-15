@@ -19,6 +19,8 @@ x-gateway: &gateway
     RL_SYNC_INTERVAL: 2s
     RL_SYNC_JITTER: 0s
     RL_SYNC_SNAPSHOT_FILE: /tmp/rules-snapshot.json
+    RL_NODE_COUNT: "2"
+    RL_LEASE_ENABLED: "true"
   depends_on:
     redis: { condition: service_healthy }
     control-plane: { condition: service_healthy }

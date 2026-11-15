@@ -1,0 +1,8 @@
+{
+  "etag": "test-lease",
+  "rules": [
+    { "serviceId": "leased", "ruleId": "per-user", "match": { "method": "*", "path": "/leased/**" }, "keyBy": "userId", "capacity": 200, "refillPerSec": 0.001, "onFailure": "open", "enabled": true },
+    { "serviceId": "closed", "ruleId": "per-user", "match": { "method": "*", "path": "/closed/**" }, "keyBy": "userId", "capacity": 5, "refillPerSec": 0.001, "onFailure": "closed", "enabled": true },
+    { "serviceId": "fallback", "ruleId": "per-user", "match": { "method": "*", "path": "/fallback/**" }, "keyBy": "userId", "capacity": 10, "refillPerSec": 0.001, "onFailure": "local_fallback", "enabled": true }
+  ]
+}
